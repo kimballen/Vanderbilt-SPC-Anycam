@@ -2,119 +2,119 @@
 A small Python project that makes it possible to integrate almost any RTSP camera with a Vanderbilt SPC alarm
 
 
-Vanderbilt SPC - Anycam User Manual
-Table of Contents
-Introduction
-System Requirements
-Installation
-Configuration
-Setting Number of Streams
-Configuring a Stream
-Authentication Settings
-Running the Application
-Managing Streams
-Starting Streams
-Stopping Streams
-Listing Streams
-Viewing Stream Settings
-Saving and Loading Configuration
-Saving Configuration
-Loading Configuration
-Auto-Start Configuration
-Camera Settings
-Troubleshooting
-Exiting the Application
-Introduction
-Vanderbilt SPC - Anycam is a Python-based application designed to manage multiple RTSP camera streams, providing web access to live feeds. It supports features such as authentication, hardware acceleration, and configurable camera settings. This manual provides comprehensive instructions on installing, configuring, and using the Anycam application.
+# RTSP to SPC Camera Stream
 
-System Requirements
-Operating System: Windows
-Python Version: Python 3.6 or higher
-Hardware: Compatible camera devices with RTSP support
-Dependencies:
-OpenCV (opencv-python)
-NumPy (numpy)
-Pillow (PIL)
-Requests
-Other standard Python libraries as listed in the requirements.txt
-Installation
-Clone the Repository:
-Navigate to the Project Directory:
-Install Required Python Packages: Ensure you have pip installed. Run the following command to install dependencies:
-Note: If requirements.txt is not provided, install dependencies individually:
-Configuration
-Setting Number of Streams
-Start the Application:
-Access the Menu: Upon running, the console menu will appear.
-Set Number of Streams:
-Select option 1 from the main menu.
-Enter the desired number of camera streams (1-10).
-Configuring a Stream
-Access Configuration:
-From the main menu, select option 2 to configure a stream.
-Input Stream Details:
-RTSP URL: Enter the RTSP URL of your camera (e.g., rtsp://192.168.1.100:554/stream).
-Username and Password: If your camera requires authentication, provide the RTSP username and password.
-Web Server Port: Specify the port for the web server. If left blank, a default port between 80-90 will be assigned.
-Configure Authentication:
-Choose whether to enable URL authentication by entering y (yes) or n (no).
-If enabled, provide a username and password for accessing the web stream.
-Authentication Settings
-Enable URL Authentication: Protects access to the camera streams by requiring valid credentials.
-Provide Credentials: When enabled, users must supply the correct username and password encoded in Base64 to access the stream.
-Running the Application
-Start the Application:
-Interact with the Console Menu: Use the numbered options to configure and manage your camera streams.
-Managing Streams
-Starting Streams
-Start All Streams:
-Select option 4 from the main menu.
-Choose A to start all configured streams.
-Start Individual Stream:
-Select option 4 and enter the stream number (e.g., 0).
-Stopping Streams
-Stop All Streams:
-Select option 5 from the main menu to stop all active streams.
-Stop Individual Stream:
-Select option 5 and follow prompts to stop specific streams.
-Listing Streams
-View Current Streams:
-Select option 3 to list all configured streams along with their status and access URLs.
-Viewing Stream Settings
-View Settings of a Specific Stream:
-Select option 6 and choose the desired stream to view its configuration details.
-Saving and Loading Configuration
-Saving Configuration
-Save Current Settings:
-Select option 7 from the main menu to save all current stream configurations to streams_config.json.
-Loading Configuration
-Load Saved Settings:
-Select option 8 to load configurations from streams_config.json.
-Existing streams will be stopped and reconfigured based on the loaded settings.
-Auto-Start Configuration
-Enable Auto-Start:
-After configuring streams, select option 9 to save settings with auto-start enabled.
-On application launch, streams will automatically start based on the saved configuration.
-Disable Auto-Start:
-Select option 10 to save settings with auto-start disabled.
-Camera Settings
-Adjust Camera Parameters:
-The application allows configuring settings such as brightness, contrast, saturation, exposure, frame width, frame height, and FPS.
-These settings can be adjusted within the stream configuration section.
-Troubleshooting
-Failed to Connect to Camera:
-Ensure the RTSP URL is correct and the camera is accessible over the network.
-Verify network connectivity and firewall settings.
-Web Server Port Conflicts:
-If the default port is in use, specify an alternative port during stream configuration.
-Authentication Issues:
-Ensure that the correct credentials are provided and properly encoded in Base64 when accessing authenticated streams.
-Hardware Acceleration Problems:
-If hardware acceleration fails, the application will fallback to CPU decoding. Ensure that your system supports the desired hardware acceleration method.
-Exiting the Application
-Graceful Shutdown:
-Select option 0 from the main menu to exit the application.
-The application will stop all active streams and perform necessary cleanup.
-Force Exit:
-Press Ctrl + C to forcibly terminate the application. This will trigger cleanup procedures to stop streams.
-For further assistance or to report issues, please contact the support team or refer to the project's repository documentation.
+This Python script captures video streams from RTSP cameras and serves them as JPEG images over HTTP. It supports multiple streams, hardware acceleration, and optional URL authentication.
+
+## Table of Contents
+- [Requirements](#requirements)
+- [Installation](#installation)
+- [Configuration](#configuration)
+- [Usage](#usage)
+- [Features](#features)
+- [Troubleshooting](#troubleshooting)
+- [License](#license)
+
+## Requirements
+- Python 3.6 or higher
+- Required Python packages:
+  - `opencv-python`
+  - `numpy`
+  - `requests`
+  - `pillow`
+
+## Installation
+1. Clone the repository:
+    ```sh
+    git clone https://github.com/yourusername/rtsp-to-spc.git
+    cd rtsp-to-spc
+    ```
+
+2. Install the required packages:
+    ```sh
+    pip install -r requirements.txt
+    ```
+
+## Configuration
+### Stream Configuration
+The script supports multiple RTSP streams. You can configure the streams by editing the `streams_config.json` file or using the console menu.
+
+Example `streams_config.json`:
+```json
+{
+    "num_streams": 2,
+    "auto_start": true,
+    "streams": {
+        "0": {
+            "rtsp_url": "rtsp://192.168.1.100:554/stream",
+            "web_port": 8080,
+            "username": "user",
+            "password": "pass",
+            "web_username": "admin",
+            "web_password": "admin",
+            "config": {
+                "brightness": 50,
+                "contrast": 50,
+                "saturation": 50,
+                "exposure": 50,
+                "frame_width": 640,
+                "frame_height": 480,
+                "fps": 30
+            }
+        },
+        "1": {
+            "rtsp_url": "rtsp://192.168.1.101:554/stream",
+            "web_port": 8081,
+            "username": "user",
+            "password": "pass",
+            "web_username": "admin",
+            "web_password": "admin",
+            "config": {
+                "brightness": 50,
+                "contrast": 50,
+                "saturation": 50,
+                "exposure": 50,
+                "frame_width": 640,
+                "frame_height": 480,
+                "fps": 30
+            }
+        }
+    }
+}
+```
+
+### Console Menu
+The script includes a console menu for configuring and managing streams interactively.
+
+## Usage
+1. Run the script:
+    ```sh
+    python Vanderbilt_Spc_Anycam.py
+    ```
+
+2. Use the console menu to configure streams, start/stop streams, and save/load configurations.
+
+### Console Menu Options
+- **Set number of streams**: Configure the number of RTSP streams.
+- **Configure stream**: Set up the RTSP URL, credentials, and web server port for a stream.
+- **List streams**: Display the current stream configurations.
+- **Start stream**: Start a specific stream or all streams.
+- **Stop stream**: Stop a specific stream or all streams.
+- **Show stream settings**: Display the settings of a specific stream.
+- **Save configuration**: Save the current configuration to `streams_config.json`.
+- **Load configuration**: Load the configuration from `streams_config.json`.
+- **Save and enable auto-start**: Save the configuration and enable auto-start.
+- **Save and disable auto-start**: Save the configuration and disable auto-start.
+- **Exit**: Exit the program.
+
+## Features
+- **Multiple Streams**: Support for multiple RTSP streams.
+- **Hardware Acceleration**: Detect and use available hardware acceleration (NVIDIA, Intel, AMD).
+- **URL Authentication**: Optional URL authentication for accessing the JPEG images.
+- **Adaptive Frame Processing**: Adaptive frame processing to maintain target FPS.
+- **Error Handling**: Robust error handling and automatic reconnection.
+
+## Troubleshooting
+- **Failed to connect to camera**: Ensure the RTSP URL and credentials are correct.
+- **No image available**: Check the camera connection and stream configuration.
+- **Web server not starting**: Verify the web server port is not in use by another application.
