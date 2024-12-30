@@ -26,8 +26,8 @@ This Python script captures video streams from RTSP cameras and serves them as J
 ## Installation
 1. Clone the repository:
     ```sh
-    git clone https://github.com/yourusername/rtsp-to-spc.git
-    cd rtsp-to-spc
+    git clone https://github.com/kimballen/Vanderbilt-SPC-Anycam.git
+    cd Vanderbilt-SPC-Anycam
     ```
 
 2. Install the required packages:
