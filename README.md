@@ -13,7 +13,6 @@ This Python script captures video streams from RTSP cameras and serves them as J
 - [Usage](#usage)
 - [Features](#features)
 - [Troubleshooting](#troubleshooting)
-- [License](#license)
 
 ## Requirements
 - Python 3.6 or higher
